@@ -16,7 +16,7 @@ final class AppContainer {
 // MARK: - Resolver
 
 extension AppContainer: Resolver {
-    func optionalResolve<T>(_ type: T.Type, named: String?, with arguments: Arguments) -> T? {
+    func optionalResolve<T>(type: T.Type, named: String?, with arguments: Arguments) -> T? {
         return container.optionalResolve(type, named: named, with: arguments)
     }
 }
