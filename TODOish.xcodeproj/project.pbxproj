@@ -758,7 +758,7 @@
 			repositoryURL = "https://github.com/NikSativa/DIKit.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 3.0.2;
+				minimumVersion = 3.0.3;
 			};
 		};
 		24EC59162CB6E5470000590C /* XCRemoteSwiftPackageReference "SpryKit" */ = {
