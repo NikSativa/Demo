@@ -2,7 +2,6 @@ import Combine
 import StorageKit
 import SwiftUI
 
-@MainActor
 protocol DBManager {
     var tasksPublisher: ValuePublisher<[TD.Task]> { get }
     var tasks: [TD.Task] { get }
@@ -17,8 +16,7 @@ protocol DBManager {
 // MARK: - Impl.DBManager
 
 extension Impl {
-    @MainActor
-    final class DBManager {
+    final class DBManager: @unchecked Sendable {
         private let storage: AnyStorage<[TD.Task]?>
         private var timer: Timer?
 

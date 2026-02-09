@@ -1,7 +1,6 @@
 import Foundation
 import SwiftUI
 
-@MainActor
 protocol AlertPresenter {
     func show(_ error: Error)
 }
@@ -9,7 +8,6 @@ protocol AlertPresenter {
 // MARK: - Impl.AlertPresenter
 
 extension Impl {
-    @MainActor
     @Observable
     final class AlertPresenter: ObservableObject {
         var isPresented: Bool = false
@@ -31,7 +29,8 @@ extension Impl.AlertPresenter: AlertPresenter {
 }
 
 struct AlertPresenterViewModifier: ViewModifier {
-    @ObservedObject var alertPresenter: Impl.AlertPresenter
+    @ObservedObject
+    var alertPresenter: Impl.AlertPresenter
 
     func body(content: Content) -> some View {
         content

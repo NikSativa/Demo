@@ -1,5 +1,4 @@
 import XCTest
-
 @testable import TODOish
 
 final class CategoryTests: XCTestCase {

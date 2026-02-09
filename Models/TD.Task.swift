@@ -3,7 +3,6 @@ import Foundation
 // MARK: - TD.Task
 
 extension TD {
-    @MainActor
     struct Task: Identifiable, Hashable, Codable {
         let id: UUID
         var text: String

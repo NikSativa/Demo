@@ -2,7 +2,6 @@ import Combine
 import SpryKit
 import StorageKit
 import XCTest
-
 @testable import TODOish
 
 @MainActor
@@ -42,8 +41,11 @@ final class MainView_ViewModelTests: XCTestCase {
         setUpSubject()
 
         filter.showExpired = true
+        pumpRunLoop()
         sorting = .byDueDate
+        pumpRunLoop()
         tasksSubject.send([task1, task2, task3, task4])
+        pumpRunLoop()
 
         XCTAssertEqual(subject.tasks, [task2, task4, task1, task3], subject.tasks.testTexts)
         XCTAssertEqual(subject.groups, [
@@ -56,8 +58,11 @@ final class MainView_ViewModelTests: XCTestCase {
         setUpSubject()
 
         filter.showExpired = false
+        pumpRunLoop()
         sorting = .byDueDate
+        pumpRunLoop()
         tasksSubject.send([task1, task2, task3, task4])
+        pumpRunLoop()
 
         XCTAssertEqual(subject.tasks, [task1, task3], subject.tasks.testTexts)
         XCTAssertEqual(subject.groups, [
@@ -70,8 +75,11 @@ final class MainView_ViewModelTests: XCTestCase {
         setUpSubject()
 
         filter.showExpired = true
+        pumpRunLoop()
         sorting = .byPriority
+        pumpRunLoop()
         tasksSubject.send([task1, task2, task3, task4])
+        pumpRunLoop()
 
         XCTAssertEqual(subject.tasks, [task3, task1, task2, task4], subject.tasks.testTexts)
         XCTAssertEqual(subject.groups, [
@@ -84,8 +92,11 @@ final class MainView_ViewModelTests: XCTestCase {
         setUpSubject()
 
         filter.showExpired = false
+        pumpRunLoop()
         sorting = .byPriority
+        pumpRunLoop()
         tasksSubject.send([task1, task2, task3, task4])
+        pumpRunLoop()
 
         XCTAssertEqual(subject.tasks, [task3, task1], subject.tasks.testTexts)
         XCTAssertEqual(subject.groups, [
@@ -100,6 +111,12 @@ final class MainView_ViewModelTests: XCTestCase {
         db.stub(.removeTaskWithWith).andReturn()
         subject.removeTask(with: task1.id)
         XCTAssertHaveReceived(db, .removeTaskWithWith, with: task1.id)
+    }
+
+    private func pumpRunLoop(file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "Pump run loop")
+        DispatchQueue.main.async { exp.fulfill() }
+        wait(for: [exp], timeout: 1)
     }
 }
 

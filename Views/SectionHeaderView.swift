@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct SectionHeaderView: View {
-    @Binding var isExpanded: Bool
+    @Binding
+    var isExpanded: Bool
     let text: LocalizedStringKey
 
     var body: some View {

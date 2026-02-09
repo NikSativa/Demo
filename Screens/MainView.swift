@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct MainView: View {
-    @iVModel var viewModel: ViewModel
+    @iVModel
+    var viewModel: ViewModel
 
     var body: some View {
         Group {

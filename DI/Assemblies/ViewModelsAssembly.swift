@@ -1,7 +1,6 @@
 import DIKit
 import Foundation
 
-@MainActor
 final class ViewModelsAssembly: Assembly {
     func assemble(with registrator: Registrator) {
         registrator.register(MainView.ViewModel.self, options: .transient) { resolver in

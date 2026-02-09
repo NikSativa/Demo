@@ -6,13 +6,14 @@ import SwiftUI
 // MARK: - MainView.ViewModel
 
 extension MainView {
-    @MainActor
     final class ViewModel: ViewModeling {
         private var cancellables: Set<AnyCancellable> = []
         private let dataBase: DBManager
 
-        @Published var groups: [TD.Group] = []
-        @Published var tasks: [TD.Task] = []
+        @Published
+        var groups: [TD.Group] = []
+        @Published
+        var tasks: [TD.Task] = []
 
         @Defaults(key: "app.filter")
         var sorting: TD.Sorting = .default
@@ -34,6 +35,7 @@ extension MainView {
             }
 
             Publishers.CombineLatest3($sorting, $filter, dataBase.tasksPublisher)
+                .receive(on: RunLoop.main)
                 .removeDuplicates(by: ==)
                 .sink { [unowned self] sorting, filter, new in
                     update(sorting: sorting, filter: filter, tasks: new)
@@ -87,6 +89,7 @@ private extension MainView.ViewModel {
             if lhs.dueDate != rhs.dueDate {
                 return lhs.dueDate < rhs.dueDate
             }
+
         case .byDueDate:
             if lhs.dueDate != rhs.dueDate {
                 return lhs.dueDate < rhs.dueDate

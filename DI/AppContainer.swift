@@ -1,7 +1,6 @@
 import DIKit
 import Foundation
 
-@MainActor
 final class AppContainer {
     private let container: Container
 

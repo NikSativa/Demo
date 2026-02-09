@@ -1,8 +1,10 @@
 import SwiftUI
 
 struct TaskView: View {
-    @iVModel var viewModel: ViewModel
-    @Environment(\.dismiss) var dismissAction
+    @iVModel
+    var viewModel: ViewModel
+    @Environment(\.dismiss)
+    var dismissAction
 
     /// add new task
     init() {

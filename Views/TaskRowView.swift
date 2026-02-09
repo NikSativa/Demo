@@ -2,7 +2,8 @@ import Foundation
 import SwiftUI
 
 struct TaskRowView: View {
-    @Binding var task: TD.Task
+    @Binding
+    var task: TD.Task
     let action: SetClosure<TD.Task.ID>
 
     var body: some View {

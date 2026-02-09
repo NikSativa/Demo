@@ -3,7 +3,6 @@ import Foundation
 // MARK: - TaskView.ViewModel
 
 extension TaskView {
-    @MainActor
     @Observable
     final class ViewModel: ViewModeling {
         private let dataBase: DBManager

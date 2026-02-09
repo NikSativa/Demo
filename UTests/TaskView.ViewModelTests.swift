@@ -2,7 +2,6 @@ import Combine
 import SpryKit
 import StorageKit
 import XCTest
-
 @testable import TODOish
 
 @MainActor
@@ -93,7 +92,7 @@ final class TaskView_ViewModelTests: XCTestCase {
         subject.task = task
         subject.customCategoryName = task.category.id
 
-        if let error = error {
+        if let error {
             alertPresenter.stub(.showWithError).with(error).andReturn()
             XCTAssertFalse(subject.mainButtonTappedAndNeedClose())
             XCTAssertHaveReceived(alertPresenter, .showWithError, countSpecifier: .exactly(1), file: file, line: line)

@@ -26,7 +26,6 @@ extension TD {
                 return "category.work.title"
             case .home:
                 return "category.home.title"
-
             default:
                 assert(isCustom, "Should be localized \(id)")
                 return LocalizedStringKey(id)

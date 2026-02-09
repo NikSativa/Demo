@@ -2,7 +2,6 @@ import DIKit
 import Foundation
 import StorageKit
 
-@MainActor
 final class AppAssembly: Assembly {
     func assemble(with registrator: Registrator) {
         registrator.register(DBManager.self, options: .container) { resolver in
@@ -16,7 +15,7 @@ final class AppAssembly: Assembly {
             ]).toAny()
         }
 
-        registrator.register(Impl.AlertPresenter.self, options: .container) {
+        registrator.isolatedMain.register(Impl.AlertPresenter.self, options: .container) {
             return .init()
         }
         .implements(AlertPresenter.self)
